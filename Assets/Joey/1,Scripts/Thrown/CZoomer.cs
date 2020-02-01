@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class CZoomer : MonoBehaviour
 {
-    public GameObject   ZoomObj;
-    public Transform    TargetObj;
-    public CObjMover    MovObj;
+    public AnimationCurve   ac;
+    public GameObject       ZoomObj;
+    public Transform        TargetObj;
+    public CObjMover        MovObj;
 
     public float        _defaultYPosition;
     public float        _ZoomSizePerDist;
+    private float       _totalDistToTarget;
     public bool         _isDefaultSeted = false;
 
     
@@ -18,8 +20,8 @@ public class CZoomer : MonoBehaviour
         if (MovObj._isMove)
         {
             _isDefaultSeted = false;
-            float currentY = ZoomObj.transform.position.y - _defaultYPosition;
-            ZoomObj.transform.localScale = new Vector3(1 - currentY * _ZoomSizePerDist, 1 - currentY * _ZoomSizePerDist, 1);
+            float currentY = (ZoomObj.transform.position.y-_defaultYPosition)/_totalDistToTarget;
+            ZoomObj.transform.localScale = new Vector3(ac.Evaluate(currentY)*0.7f+0.3f, ac.Evaluate(currentY) * 0.7f+0.3f, 1);
         }else
         {
             if(!_isDefaultSeted)
@@ -33,7 +35,8 @@ public class CZoomer : MonoBehaviour
     {
         ZoomObj.transform.localScale    = new Vector3(1,1,1);
         _defaultYPosition               = ZoomObj.transform.position.y;
-        _ZoomSizePerDist                = 0.7f/CalDisOfY();
+        _totalDistToTarget              = CalDisOfY();
+        //_ZoomSizePerDist                = 0.7f/_totalDistToTarget;
         _isDefaultSeted                 = true;
     }
 

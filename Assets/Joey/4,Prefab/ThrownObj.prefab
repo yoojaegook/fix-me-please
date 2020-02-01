@@ -110,6 +110,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0176b5f72b4bd486495fba39ac823673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ac:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.0071106
+      inSlope: 0.10143918
+      outSlope: 0.10143918
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.44772843
+    - serializedVersion: 3
+      time: 0.23082775
+      value: 1.3311278
+      inSlope: 0.48358968
+      outSlope: 0.48358968
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.4454229
+    - serializedVersion: 3
+      time: 0.8213999
+      value: 0.89396363
+      inSlope: -2.9320946
+      outSlope: -2.9320946
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9960022
+      value: 0.0039978027
+      inSlope: -5.0971036
+      outSlope: -5.0971036
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   ZoomObj: {fileID: 6842261880738885365}
   TargetObj: {fileID: 0}
   MovObj: {fileID: 6842261880550283984}

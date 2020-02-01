@@ -8,20 +8,20 @@ public class CObjMover : MonoBehaviour
 
 
     [Range(0, 5f)]
-    public float _movSpeed      = 1f;
+    public float _movSpeed = 1f;
     [Range(0, 5f)]
-    public float _velocity      = 2f;
+    public float _velocity = 2f;
     [Range(-5, 5f)]
     public float _defaultSidePow = 2f;
-    [Range(-5f,5f)]
-    public float _defaultaSpin  = 2f;
-    private float _sunpunggi     = 1f;
-    private float _magnet        = 1f;
+    [Range(-5f, 5f)]
+    public float _defaultaSpin = 2f;
+    private float _sunpunggi = 1f;
+    private float _magnet = 1f;
 
     public bool _isMove = false;
     private float _sideMovePower;
-    private float _aSpin         = 2f;
-    
+    private float _aSpin = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,11 +43,12 @@ public class CObjMover : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             DefaultSet();
             _isMove = true;
-        }if(Input.GetKey(KeyCode.D))
+        }
+        if (Input.GetKey(KeyCode.D))
         {
             DefaultSet();
         }
@@ -63,23 +64,23 @@ public class CObjMover : MonoBehaviour
     }
     public void MoveStraighteFunc()
     {
-        transform.Translate(0, _velocity*Time.fixedDeltaTime*_movSpeed, 0);
+        transform.Translate(0, _velocity * Time.fixedDeltaTime * _movSpeed, 0);
     }
     public void MoveSideFunc()
     {
-        transform.Translate(_sideMovePower * Time.fixedDeltaTime*_movSpeed, 0, 0);
+        transform.Translate(_sideMovePower * Time.fixedDeltaTime * _movSpeed, 0, 0);
     }
     public void SpinMoveFunc()
     {
-        _sideMovePower += (_aSpin*Time.fixedDeltaTime*_movSpeed);
+        _sideMovePower += (_aSpin * Time.fixedDeltaTime * _movSpeed);
     }
     public void MagnetMoveFunc()
     {
-        transform.position += new Vector3(-_magnet * Time.fixedDeltaTime*_movSpeed,0,0);
+        transform.position += new Vector3(-_magnet * Time.fixedDeltaTime * _movSpeed, 0, 0);
     }
     public void SunpunggiMoveFunc()
     {
-        _aSpin += (_sunpunggi*_movSpeed);
+        _aSpin += (_sunpunggi * _movSpeed);
     }
 
     #endregion
@@ -88,10 +89,11 @@ public class CObjMover : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("TriggerEnter" + collision.tag);
-        switch(collision.tag)
+        switch (collision.tag)
         {
             case "Sunpunggi":
                 _sunpunggi = collision.gameObject.GetComponent<CCollSizeController>().GetPower();
+                SunpunggiMoveFunc();
                 break;
             case "Magnet":
                 _magnet = collision.gameObject.GetComponent<CCollSizeController>().GetPower();
@@ -103,10 +105,9 @@ public class CObjMover : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("TriggerStay" + collision.tag);
-        switch(collision.tag)
+        switch (collision.tag)
         {
             case "Sunpunggi":
-                SunpunggiMoveFunc();
                 break;
             case "Magnet":
                 MagnetMoveFunc();
